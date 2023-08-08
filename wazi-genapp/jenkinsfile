@@ -57,7 +57,7 @@ pipeline {
                     if ( verbose ) {
                         echo sh(script: 'env|sort', returnStdout: true)
                     }
-                    dir('cics-genapp') {
+                    dir('wazi-genapp') {
                         srcGitRepo = scm.getUserRemoteConfigs()[0].getUrl()
                         srcGitBranch = scm.branches[0].name
                         def scmVars = null
@@ -101,7 +101,7 @@ pipeline {
                                 ${WORKSPACE}/dbb-zappbuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE}\
                                 --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER} --hlq ${DBB_HLQ}.GENWAZI --url ${DBB_URL}\
                                 ${DBB_CRED} -d ${DBB_BUILD_TYPE} ${BUILD_VERBOSE} ${DBB_BUILD_EXTRA_OPTS}\
-                                --application cics-genapp --sourceDir ${WORKSPACE}/cics-genapp"
+                                --application wazi-genapp --sourceDir ${WORKSPACE}/wazi-genapp"
                             echo $CMD
                             $CMD
                             exit $?
@@ -202,7 +202,7 @@ text:"""artifact_repository:
                             
                             cd ${WORKSPACE}
                             CMD="${PYTHON_INTERPRETER}\
-                                   ${WORKSPACE}/cics-genapp/cics-genapp/plum-samples/python/dbb/dbb_prepare_folder.py\
+                                   ${WORKSPACE}/wazi-genapp/wazi-genapp/plum-samples/python/dbb/dbb_prepare_folder.py\
                                    --dbbBuildResult ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}/BuildReport.json\
                                    --workingFolder ${WORKSPACE}/BUILD-${BUILD_NUMBER}/package"
                             echo $CMD
@@ -305,7 +305,7 @@ text:"""artifact_repository:
                             BUILD_OUTPUT_FOLDER=$(ls ${WORKSPACE}/BUILD-${BUILD_NUMBER} | grep "build.*[0-9]$" | tail -n 1)
 
                             CMD=" wazideploy-generate\
-                                   --deploymentMethod  ${WORKSPACE}/cics-genapp/cics-genapp/yaml/deployment-method.yml\
+                                   --deploymentMethod  ${WORKSPACE}/wazi-genapp/wazi-genapp/yaml/deployment-method.yml\
                                    --deploymentPlan  ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}/deployment-plan.yml\
                                    --deploymentPlanReport ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}/deployment-plan-report.html\
                                    --packageInputFile ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}/${BUILD_OUTPUT_FOLDER}.tar"
@@ -344,7 +344,7 @@ text:"""artifact_repository:
                             // ls -la
                             CMD="wazideploy-deploy\
                                    --deploymentPlan ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}/deployment-plan.yml\
-                                   --envFile ${WORKSPACE}/cics-genapp/cics-genapp/yaml/environment-zos.yml\
+                                   --envFile ${WORKSPACE}/wazi-genapp/wazi-genapp/yaml/environment-zos.yml\
                                    --workingFolder ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}/work\
                                    --packageInputFile ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}/${BUILD_OUTPUT_FOLDER}.tar"
                             echo $CMD
