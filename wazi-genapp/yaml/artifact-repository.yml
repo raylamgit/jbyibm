@@ -1,0 +1,10 @@
+artifact_repository:
+   # The type of the artifact repository
+   type: "artifactory"
+   # The URL to the artifact repository server
+   url: https://na.artifactory.swg-devops.com/artifactory
+   # The Repo
+   repository: hyc-mvp-team-maven-local/WAZIGenapp
+   # Artifact repository credentials
+   user: raymond.lam@ibm.com
+   password: 4x2izBRCmxs+j05KiDIqDiYTiMvCBK1ZiTzi9Ia2PBSVJyMoetdnI+w6R3kfzRIDmE
