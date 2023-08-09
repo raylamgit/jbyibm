@@ -33,7 +33,7 @@ pipeline {
         ARTIFACTORY_CRED_ID = "${env.ARTIFACTORY_CRED_ID ? env.ARTIFACTORY_CRED_ID : 'ray_artifactory_id'}"
         ARTIFACTORY_REPO = "${env.ARTIFACTORY_REPO  ? env.ARTIFACTORY_REPO : 'hyc-mvp-team-maven-local/GithubWaziDeploy'}"
         ARTIFACTORY_REPO_PATH = "${env.ARTIFACTORY_REPO_PATH ? env.ARTIFACTORY_REPO_PATH : 'GithubWaziDeploy'}"
-        ARTIFACTORY_STATIC_BUILD_NAME = "${env.ARTIFACTORY_STATIC_BUILD_NAME ? env.ARTIFACTORY_STATIC_BUILD_NAME : 'hyc-mvp-team/RayLamGitHubGenAppBUILD'}"
+        ARTIFACTORY_STATIC_BUILD_NAME = "${env.ARTIFACTORY_STATIC_BUILD_NAME ? env.ARTIFACTORY_STATIC_BUILD_NAME : 'hyc-mvp-team/RayLamGitHubGenApp'}"
         PYTHON_VIRTUAL_ENV_COMMAND = "${env.PYTHON_VIRTUAL_ENV_COMMAND ? env.PYTHON_VIRTUAL_ENV_COMMAND : ''}"
         
 
@@ -186,7 +186,7 @@ text:"""artifact_repository:
                                     --configFile ${WORKSPACE}/BUILD-${BUILD_NUMBER}/config.yml\
                                     --localFolder ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}\
                                     --repository  ${ARTIFACTORY_REPO}\
-                                    --buildName ${ARTIFACTORY_STATIC_BUILD_NAME}${BUILD_NUMBER}\
+                                    --buildName ${ARTIFACTORY_STATIC_BUILD_NAME}\
                                     --buildNumber "${BUILD_NUMBER}"\
                                     --buildUrl "${BUILD_URL}"\
                                     --manifestVersion "${BUILD_OUTPUT_FOLDER}"\
