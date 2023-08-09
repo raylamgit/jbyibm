@@ -187,7 +187,7 @@ text:"""artifact_repository:
                                     --localFolder ${WORKSPACE}/BUILD-${BUILD_NUMBER}/${BUILD_OUTPUT_FOLDER}\
                                     --repository  ${ARTIFACTORY_REPO}\
                                     --buildName ${ARTIFACTORY_STATIC_BUILD_NAME}${BUILD_NUMBER}\
-                                    --buildNumber "${BUILD_OUTPUT_FOLDER}"\
+                                    --buildNumber "${BUILD_NUMBER}"\
                                     --buildUrl "${BUILD_URL}"\
                                     --manifestVersion "${BUILD_OUTPUT_FOLDER}"\
                                     --manifestName "${APP_NAME}"\
